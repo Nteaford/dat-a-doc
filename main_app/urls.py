@@ -7,5 +7,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     # About Route
     path('about/', views.about, name='about'),
-    
+    path('accounts/signup/', views.signup, name='signup'),
+
 ]
