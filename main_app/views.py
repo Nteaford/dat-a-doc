@@ -42,7 +42,7 @@ def appointment_index(request):
 def appointment_create_specialty(request):
     specialties = []
     unique_specialties = []
-    doctors = Doctor.objects.get()
+    doctors = Doctor.objects.all()
     for doctor in doctors:
         specialties.append(doctor.specialty)
     for specialty in specialties:
@@ -52,7 +52,9 @@ def appointment_create_specialty(request):
 
     
 def appointment_create_doctor(request, selected_specialty):
-    doctors = Doctor.objects.all().filter(specialty = selected_specialty)
+    print(type(selected_specialty))
+    doctors = Doctor.objects.filter(specialty = selected_specialty)
+    print(doctors)
     return render(request, "appointment/create.html", {"selected_specialty": selected_specialty, "doctors": doctors})
 
 def appointment_create_appointment(request, selected_specialty, doctor_id):

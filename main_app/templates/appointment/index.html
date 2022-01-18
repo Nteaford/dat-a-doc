@@ -4,6 +4,16 @@
 
 <h1>My Appointments</h1>
 
-<!-- {% for appointment in appointments %} -->
+{% for appointment in appointments %} 
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ appointment.date }}</span>
+        <p>visit type: {{ appointment.visit_type }}</p>
+        <p>Appointment Reason: {{ appointment.appointment_reason }}</p>
+        <p>Doctor: {{ appointment.doctor }}</p>
+        <p>User: {{ appointment.user }}</p>
+    </div>
+</div>
 
+{% endfor %}
 {% endblock %}
