@@ -1,0 +1,88 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+<h1>Schedule a New Appointment</h1>
+
+<form id="new-appointment-form" action="" method='POST'>
+
+<!-- 
+    <div class="input-group-prepend mb-3">
+        <label class="input-group-text" for="inputSpecialtySelect">Select Specialty Needed</label>
+      </div>
+
+      <select name = "specialties" class="custom-select rounded" id="inputSpecialtySelect">
+        <option selected>Select...</option>
+        {% for specialty in unique_specialties %}
+          <option name = "selected_specialty" value= "{{specialty}}" > {{ specialty }} </option>
+      </select> -->
+
+
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         {% if selected_specialty %}
+            {% selected_specialty %} 
+        {% else %}
+            Select A Specialty
+        {% endif %}
+        </button>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {% for selected_specialty in unique_specialties %}
+                <a class="dropdown-item" href="{% url 'appointment_create_doctor' selected_specialty %}"> {{selected_specialty}} </a>
+            {% endfor %}
+        </div>
+      </div>
+
+
+      {% if doctors %}
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% if selected_doctor %}
+               {% selected_doctor.name %} 
+           {% else %}
+               Select A Doctor
+           {% endif %}
+           </button>
+
+           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {% for doctor in doctors %}
+                <a class="dropdown-item" href="{% url 'appointment_create_appointment' doctor_id %}"> {{doctor.name}} </a>
+            {% endfor %}    
+            </div>
+        {% endif %}
+
+      <!-- <div class="container" style="margin:100px">
+        <div style="position: relative">
+ 
+            <!-- Include input field wiht id so
+                that we can use it in JavaScript
+                to set attributes.-->
+            <input class="form-control"
+                type="text" id="datetime" />
+        </div>
+    </div>
+ 
+    <script>
+ 
+        // Below code sets format to the
+        // datetimepicker having id as
+        // datetime
+        $('#datetime').datetimepicker({
+            format: 'hh:mm:ss a'
+        });
+    </script> -->
+
+<div>
+    <span class="input-group-text">Appointment Reason:</span>
+    <textarea class="form-control" aria-label="With textarea"></textarea>
+  </div>
+
+
+
+ 
+</form>
+
+
+{% endblock %}
