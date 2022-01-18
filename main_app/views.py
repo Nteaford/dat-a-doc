@@ -38,3 +38,33 @@ def signup(request):
 def appointment_index(request):
     appointments = Appointment.objects.filter(user=request.user)
     return render(request, "appointment/index.html", {"appointments": appointments})
+
+def appointment_create_specialty(request):
+    specialties = []
+    unique_specialties = []
+    doctors = Doctor.objects.get()
+    for doctor in doctors:
+        specialties.append(doctor.specialty)
+    for specialty in specialties:
+        if specialty not in unique_specialties:
+            unique_specialties.append(specialty)
+    return render(request, "appointment/create.html", {"unique_specialties": unique_specialties})
+
+    
+def appointment_create_doctor(request, selected_specialty):
+    doctors = Doctor.objects.all().filter(specialty = selected_specialty)
+    return render(request, "appointment/create.html", {"selected_specialty": selected_specialty, "doctors": doctors})
+
+def appointment_create_appointment(request, selected_specialty, doctor_id):
+    doctors = Doctor.objects.all().filter(specialty = selected_specialty)
+    selected_doctor = Doctor.objects.get(id=doctor_id)
+    return render(request, "appointment/create.html", {"selected_specialty": selected_specialty, "selected_doctor": selected_doctor,"doctors": doctors})
+
+
+
+
+
+
+    appointments = Appointment.objects.filter(user=request.user)
+
+    return render(request, "appointment/index.html", {"appointments": appointments})
