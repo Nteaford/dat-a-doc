@@ -7,22 +7,11 @@
 
 <form id="new-appointment-form" action="" method='POST'>
 
-<!-- 
-    <div class="input-group-prepend mb-3">
-        <label class="input-group-text" for="inputSpecialtySelect">Select Specialty Needed</label>
-      </div>
-
-      <select name = "specialties" class="custom-select rounded" id="inputSpecialtySelect">
-        <option selected>Select...</option>
-        {% for specialty in unique_specialties %}
-          <option name = "selected_specialty" value= "{{specialty}}" > {{ specialty }} </option>
-      </select> -->
-
 
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         {% if selected_specialty %}
-            {% selected_specialty %} 
+        {% if selected_specialty %}
+            {{ selected_specialty }} 
         {% else %}
             Select A Specialty
         {% endif %}
@@ -36,11 +25,11 @@
       </div>
 
 
-      {% if doctors %}
-      <div class="dropdown">
+        {% if doctors %}
+        <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {% if selected_doctor %}
-               {% selected_doctor.name %} 
+           {% if selected_doctor %}
+               {{ selected_doctor.name }} 
            {% else %}
                Select A Doctor
            {% endif %}
@@ -48,31 +37,19 @@
 
            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             {% for doctor in doctors %}
-                <a class="dropdown-item" href="{% url 'appointment_create_appointment' doctor_id %}"> {{doctor.name}} </a>
+                <a class="dropdown-item" href="{% url 'appointment_create_appointment' selected_specialty doctor.id %}"> {{doctor.name}} </a>
             {% endfor %}    
             </div>
+        {% else %}
         {% endif %}
 
-      <!-- <div class="container" style="margin:100px">
-        <div style="position: relative">
  
-            <!-- Include input field wiht id so
-                that we can use it in JavaScript
-                to set attributes.-->
-            <input class="form-control"
-                type="text" id="datetime" />
-        </div>
-    </div>
- 
-    <script>
- 
-        // Below code sets format to the
-        // datetimepicker having id as
-        // datetime
-        $('#datetime').datetimepicker({
-            format: 'hh:mm:ss a'
-        });
-    </script> -->
+    <label for="meeting-time">Choose a time for your appointment:</label>
+
+    <input type="datetime-local" id="meeting-time"
+        name="meeting-time" value="2018-06-12T19:30"
+        min="2018-06-07T00:00" max="2018-06-14T00:00">
+
 
 <div>
     <span class="input-group-text">Appointment Reason:</span>
