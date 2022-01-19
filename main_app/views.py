@@ -3,6 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .models import Appointment, Doctor, Profile
 
 
@@ -52,9 +53,7 @@ def appointment_create_specialty(request):
 
     
 def appointment_create_doctor(request, selected_specialty):
-    print(type(selected_specialty))
     doctors = Doctor.objects.filter(specialty = selected_specialty)
-    print(doctors)
     return render(request, "appointment/create.html", {"selected_specialty": selected_specialty, "doctors": doctors})
 
 def appointment_create_appointment(request, selected_specialty, doctor_id):
@@ -62,11 +61,13 @@ def appointment_create_appointment(request, selected_specialty, doctor_id):
     selected_doctor = Doctor.objects.get(id=doctor_id)
     return render(request, "appointment/create.html", {"selected_specialty": selected_specialty, "selected_doctor": selected_doctor,"doctors": doctors})
 
-
-
-
-
-
-    appointments = Appointment.objects.filter(user=request.user)
-
-    return render(request, "appointment/index.html", {"appointments": appointments})
+def appointment_create_submit(request, selected_specialty, doctor_id):
+    d = Doctor.objects.get(id=doctor_id)
+    a = Appointment.objects.create(
+        date=request.POST['date'],
+        appointment_reason=request.POST['appointment_reason'],
+        user=request.user,
+        doctor=d,
+    )
+    a.save()
+    return redirect('appointment_index')

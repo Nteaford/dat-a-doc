@@ -48,9 +48,7 @@ class Doctor(models.Model):
 
 
 class Appointment(models.Model):
-    date = models.DateTimeField(
-        default= '%m/%d/%y %H:%M',
-    )
+    date = models.DateTimeField()
     visit_type = models.CharField(
         max_length=50,
         choices=VISIT_TYPE,

@@ -5,8 +5,6 @@
 
 <h1>Schedule a New Appointment</h1>
 
-<form id="new-appointment-form" action="" method='POST'>
-
 
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,24 +40,23 @@
             </div>
         {% else %}
         {% endif %}
+        {% if selected_doctor %}
+        <form id="new-appointment-form" action="{% url 'appointment_create_submit' selected_specialty selected_doctor.id %}" method='POST'>
+            {% csrf_token %}
+            <label for="meeting-time">Choose a time for your appointment:</label>
+
+            <input name="date" type="datetime-local" min="2022-01-21T09:00" max="2022-07-20T00:00" required>    
+            <input 
+            <div>  
+            <span class="input-group-text">Appointment Reason:</span>
+            <textarea name="appointment_reason" class="form-control" aria-label="With textarea"></textarea>
+            </div>
+            <input type="submit" value="Submit!">
+        </form>
+        {% endif %}
+
 
  
-    <label for="meeting-time">Choose a time for your appointment:</label>
-
-    <input type="datetime-local" id="meeting-time"
-        name="meeting-time" value="2018-06-12T19:30"
-        min="2018-06-07T00:00" max="2018-06-14T00:00">
-
-
-<div>
-    <span class="input-group-text">Appointment Reason:</span>
-    <textarea class="form-control" aria-label="With textarea"></textarea>
-  </div>
-
-
-
- 
-</form>
 
 
 {% endblock %}
