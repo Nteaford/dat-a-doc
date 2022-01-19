@@ -43,13 +43,20 @@
         {% if selected_doctor %}
         <form id="new-appointment-form" action="{% url 'appointment_create_submit' selected_specialty selected_doctor.id %}" method='POST'>
             {% csrf_token %}
+            <select  name = "visit_type" class="custom-select rounded" id="inputGroupSelect01" style="max-width: 300px;">
+                <option selected>Select...</option>
+                <option name = "visit_type" value="General"> General Visit </option>
+                <option name = "visit_type" value="Checkup"> Routine Checkup </option>
+                <option name = "visit_type" value="Physical"> Wellness Physical </option>
+                <option name = "visit_type" value="Blood"> Blood Draw / Vaccination </option>
+                <option name = "visit_type" value="Emergency"> Emergency Visit </option>
+            </select> 
+            <br>
             <label for="meeting-time">Choose a time for your appointment:</label>
-
             <input name="date" type="datetime-local" min="2022-01-21T09:00" max="2022-07-20T00:00" required>    
-            <input 
             <div>  
-            <span class="input-group-text">Appointment Reason:</span>
-            <textarea name="appointment_reason" class="form-control" aria-label="With textarea"></textarea>
+                <span class="input-group-text">Appointment Reason:</span>
+                <textarea name="appointment_reason" class="form-control" aria-label="With textarea"></textarea>
             </div>
             <input type="submit" value="Submit!">
         </form>
