@@ -3,11 +3,32 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import UpdateView, DeleteView
+
 
 from .models import Appointment, Doctor, Profile
 
 
 # Create your views here.
+def uniquespecialties():
+    specialties = []
+    unique_specialties = []
+    doctors = Doctor.objects.all()
+    for doctor in doctors:
+        specialties.append(doctor.specialty)
+    for specialty in specialties:
+        if specialty not in unique_specialties:
+            unique_specialties.append(specialty)
+    return unique_specialties
+
+class AppointmentUpdate(UpdateView):
+  model = Appointment
+  fields = ["date", "appointment_reason", "visit_type", "doctor"]
+
+class AppointmentDelete(DeleteView):
+  model = Appointment
+  success_url = '/appointment/'
+
 
 def landing_page(request):
     return render(request, 'landing_page.html')
@@ -41,29 +62,25 @@ def appointment_index(request):
     return render(request, "appointment/index.html", {"appointments": appointments})
 
 def appointment_create_specialty(request):
-    specialties = []
-    unique_specialties = []
-    doctors = Doctor.objects.all()
-    for doctor in doctors:
-        specialties.append(doctor.specialty)
-    for specialty in specialties:
-        if specialty not in unique_specialties:
-            unique_specialties.append(specialty)
-    return render(request, "appointment/create.html", {"unique_specialties": unique_specialties})
+    uniquespecialties()
+    return render(request, "appointment/create.html", {"unique_specialties": uniquespecialties})
 
     
 def appointment_create_doctor(request, selected_specialty):
+    uniquespecialties()
     doctors = Doctor.objects.filter(specialty = selected_specialty)
-    return render(request, "appointment/create.html", {"selected_specialty": selected_specialty, "doctors": doctors})
+    return render(request, "appointment/create.html", {"selected_specialty": selected_specialty, "doctors": doctors, "unique_specialties": uniquespecialties})
 
 def appointment_create_appointment(request, selected_specialty, doctor_id):
+    uniquespecialties()
     doctors = Doctor.objects.all().filter(specialty = selected_specialty)
     selected_doctor = Doctor.objects.get(id=doctor_id)
-    return render(request, "appointment/create.html", {"selected_specialty": selected_specialty, "selected_doctor": selected_doctor,"doctors": doctors})
+    return render(request, "appointment/create.html", {"selected_specialty": selected_specialty, "selected_doctor": selected_doctor,"doctors": doctors, "unique_specialties": uniquespecialties})
 
 def appointment_create_submit(request, selected_specialty, doctor_id):
     d = Doctor.objects.get(id=doctor_id)
     a = Appointment.objects.create(
+        visit_type=request.POST["visit_type"],
         date=request.POST['date'],
         appointment_reason=request.POST['appointment_reason'],
         user=request.user,

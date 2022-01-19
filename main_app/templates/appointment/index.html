@@ -8,12 +8,25 @@
 <div class="card">
     <div class="card-content">
         <span class="card-title">{{ appointment.date }}</span>
-        <p>visit type: {{ appointment.visit_type }}</p>
+        <p>Visit type: {{ appointment.visit_type }}</p>
         <p>Appointment Reason: {{ appointment.appointment_reason }}</p>
         <p>Doctor: {{ appointment.doctor }}</p>
         <p>User: {{ appointment.user }}</p>
+        <div class="card-action">
+            <a href="{% url 'appointment_update' appointment.id %}">Update</a>
+            <a href="{% url 'appointment_delete' appointment.id %}">Delete</a>
+          </div>
     </div>
 </div>
 
 {% endfor %}
+<script>
+    const dateEl = document.getElementById('id_date');
+        M.Datepicker.init(dateEl, {
+        format: 'yyyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoClose: true
+  });
+</script>
 {% endblock %}
