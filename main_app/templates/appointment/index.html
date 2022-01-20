@@ -13,20 +13,11 @@
         <p>Doctor: {{ appointment.doctor }}</p>
         <p>User: {{ appointment.user }}</p>
         <div class="card-action">
-            <a href="{% url 'appointment_update_appointment' appointment.id 'selected_specialty' 69  %}">Update</a>
+            <a href="{% url 'appointment_update_appointment' appointment.id 'taco' 69  %}">Update</a>
             <a href="{% url 'appointment_delete' appointment.id %}">Delete</a>
           </div>
     </div>
 </div>
 
 {% endfor %}
-<script>
-    const dateEl = document.getElementById('id_date');
-        M.Datepicker.init(dateEl, {
-        format: 'yyyy-mm-dd',
-        defaultDate: new Date(),
-        setDefaultDate: true,
-        autoClose: true
-  });
-</script>
 {% endblock %}

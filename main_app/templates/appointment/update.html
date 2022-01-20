@@ -17,7 +17,7 @@
 
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             {% for selected_specialty in unique_specialties %}
-                <a class="dropdown-item" href="{% url 'appointment_update_doctor' selected_specialty %}"> {{selected_specialty}} </a>
+                <a class="dropdown-item" href="{% url 'appointment_update_doctor' appointment_id selected_specialty %}"> {{selected_specialty}} </a>
             {% endfor %}
         </div>
       </div>
@@ -34,15 +34,15 @@
            </button>
 
            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-               <a class="dropdown-item" href="{% url 'appointment_update_appointment' selected_specialty doctor.id %}"> {{appointment.doctor.name}} </a>
+               <a class="dropdown-item" href="{% url 'appointment_update_appointment' appointment_id selected_specialty doctor_id %}"> {{appointment.doctor.name}} </a>
                {% for doctor in doctors %}
-               <a class="dropdown-item" href="{% url 'appointment_update_appointment' selected_specialty doctor.id %}"> {{doctor.name}} </a>
+               <a class="dropdown-item" href="{% url 'appointment_update_appointment' appointment_id selected_specialty doctor.id %}"> {{doctor.name}} </a>
             {% endfor %}    
             </div>
         {% else %}
         {% endif %}
         {% if selected_doctor %}
-        <form id="new-appointment-form" action="{% url 'appointment_update_submit' selected_specialty selected_doctor.id %}" method='POST'>
+        <form id="new-appointment-form" action="{% url 'appointment_update_submit' appointment_id selected_specialty selected_doctor.id %}" method='POST'>
             {% csrf_token %}
             <select  name = "visit_type" class="custom-select rounded" id="inputGroupSelect01" style="max-width: 300px;">
                 <option selected> {{appointment.visit_type}} </option>
@@ -53,11 +53,13 @@
                 <option name = "visit_type" value="Emergency"> Emergency Visit </option>
             </select> 
             <br>
-            <label for="meeting-time">Choose a time for your appointment:</label>
-            <input name="date" type="datetime-local" min="2022-01-21T09:00" max="2022-07-20T00:00" value = "{{appointment.date}}" required>    
+            <p>Your scheduled appointment time is {{appointment.date}}</p>
+            <label for="meeting-time">If necessary, choose a new time for your appointment:</label>
+
+            <input name="date" type="datetime-local" min="2022-01-21T09:00" max="2022-07-20T00:00">    
             <div>  
                 <span class="input-group-text">Appointment Reason:</span>
-                <textarea name="appointment_reason" class="form-control" aria-label="With textarea" value= "{{appointment.reason}}"></textarea>
+                <textarea name="appointment_reason" class="form-control" aria-label="With textarea">{{appointment.appointment_reason}}</textarea>
             </div>
             <input type="submit" value="Submit!">
         </form>
