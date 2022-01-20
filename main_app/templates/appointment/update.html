@@ -1,0 +1,70 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+<h1>Reschedule Your Appointment</h1>
+
+
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {% if selected_specialty %}
+            {{ selected_specialty }} 
+        {% else %}
+            Select A Specialty
+        {% endif %}
+        </button>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {% for selected_specialty in unique_specialties %}
+                <a class="dropdown-item" href="{% url 'appointment_update_doctor' selected_specialty %}"> {{selected_specialty}} </a>
+            {% endfor %}
+        </div>
+      </div>
+
+
+        {% if doctors %}
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           {% if selected_doctor %}
+               {{ selected_doctor.name }} 
+           {% else %}
+               Select A Doctor
+           {% endif %}
+           </button>
+
+           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+               <a class="dropdown-item" href="{% url 'appointment_update_appointment' selected_specialty doctor.id %}"> {{appointment.doctor.name}} </a>
+               {% for doctor in doctors %}
+               <a class="dropdown-item" href="{% url 'appointment_update_appointment' selected_specialty doctor.id %}"> {{doctor.name}} </a>
+            {% endfor %}    
+            </div>
+        {% else %}
+        {% endif %}
+        {% if selected_doctor %}
+        <form id="new-appointment-form" action="{% url 'appointment_update_submit' selected_specialty selected_doctor.id %}" method='POST'>
+            {% csrf_token %}
+            <select  name = "visit_type" class="custom-select rounded" id="inputGroupSelect01" style="max-width: 300px;">
+                <option selected> {{appointment.visit_type}} </option>
+                <option name = "visit_type" value="General"> General Visit </option>
+                <option name = "visit_type" value="Checkup"> Routine Checkup </option>
+                <option name = "visit_type" value="Physical"> Wellness Physical </option>
+                <option name = "visit_type" value="Blood"> Blood Draw / Vaccination </option>
+                <option name = "visit_type" value="Emergency"> Emergency Visit </option>
+            </select> 
+            <br>
+            <label for="meeting-time">Choose a time for your appointment:</label>
+            <input name="date" type="datetime-local" min="2022-01-21T09:00" max="2022-07-20T00:00" value = "{{appointment.date}}" required>    
+            <div>  
+                <span class="input-group-text">Appointment Reason:</span>
+                <textarea name="appointment_reason" class="form-control" aria-label="With textarea" value= "{{appointment.reason}}"></textarea>
+            </div>
+            <input type="submit" value="Submit!">
+        </form>
+        {% endif %}
+
+
+ 
+
+
+{% endblock %}

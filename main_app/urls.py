@@ -14,6 +14,12 @@ urlpatterns = [
     path('appointment/create/<str:selected_specialty>/', views.appointment_create_doctor, name='appointment_create_doctor'),
     path('appointment/create/<str:selected_specialty>/<int:doctor_id>/', views.appointment_create_appointment, name='appointment_create_appointment'),
     path('appointment/create/<str:selected_specialty>/<int:doctor_id>/submit/', views.appointment_create_submit, name='appointment_create_submit'),
-    path('appointment/<int:pk>/update/', views.AppointmentUpdate.as_view(), name="appointment_update"),
     path('appointment/<int:pk>/delete/', views.AppointmentDelete.as_view(), name="appointment_delete"),
+    path('appointment/<int:pk>/update/', views.AppointmentUpdate.as_view(), name="appointment_update"),
+    path('appointment/<int:appointment_id>/update/', views.appointment_update_specialty, name='appointment_update_specialty'),
+    path('appointment/<int:appointment_id>/update/<str:selected_specialty>/', views.appointment_update_doctor, name='appointment_update_doctor'),
+    path('appointment/<int:appointment_id>/update/<str:selected_specialty>/<int:doctor_id>/', views.appointment_update_appointment, name='appointment_update_appointment'),
+    path('appointment/<int:appointment_id>/update/<str:selected_specialty>/<int:doctor_id>/submit/', views.appointment_update_submit, name='appointment_update_submit'),
+
+
 ]

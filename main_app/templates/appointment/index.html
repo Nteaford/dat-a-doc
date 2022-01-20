@@ -13,7 +13,7 @@
         <p>Doctor: {{ appointment.doctor }}</p>
         <p>User: {{ appointment.user }}</p>
         <div class="card-action">
-            <a href="{% url 'appointment_update' appointment.id %}">Update</a>
+            <a href="{% url 'appointment_update_appointment' appointment.id 'selected_specialty' 69  %}">Update</a>
             <a href="{% url 'appointment_delete' appointment.id %}">Delete</a>
           </div>
     </div>

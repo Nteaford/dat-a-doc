@@ -88,3 +88,36 @@ def appointment_create_submit(request, selected_specialty, doctor_id):
     )
     a.save()
     return redirect('appointment_index')
+
+
+def appointment_update_specialty(request, appointment_id):
+    uniquespecialties()
+    appointment = Appointment.objects.get(id=appointment_id)
+    return render(request, "appointment/update.html", {"unique_specialties": uniquespecialties, "appointment": appointment})
+
+    
+def appointment_update_doctor(request, selected_specialty, appointment_id):
+    uniquespecialties()
+    appointment = Appointment.objects.get(id=appointment_id)
+    doctors = Doctor.objects.filter(specialty = selected_specialty)
+    return render(request, "appointment/update.html", {"selected_specialty": selected_specialty, "doctors": doctors, "unique_specialties": uniquespecialties, "selected_doctor": appointment.doctor, "appointment": appointment})
+
+def appointment_update_appointment(request, appointment_id):
+    uniquespecialties()
+    appointment = Appointment.objects.get(id=appointment_id)
+    selected_specialty = Appointment.objects.get(id=appointment_id).doctor.specialty
+    doctors = Doctor.objects.all().filter(specialty = selected_specialty)
+    doctor_id = Appointment.objects.get(id=appointment_id).doctor.id
+    return render(request, "appointment/update.html", {"selected_specialty": selected_specialty, "selected_doctor": appointment.doctor, "doctor_id": doctor_id, "doctors": doctors, "unique_specialties": uniquespecialties, "appointment": appointment})
+
+def appointment_update_submit(request, appointment_id, selected_specialty, doctor_id):
+    d = Doctor.objects.get(id=doctor_id)
+    a = Appointment.objects.get(id=appointment_id)
+    a.visit_type = request.POST["visit_type"]
+    a.date = request.POST["date"]
+    a.appointment_reason = request.POST["appointment_reason"]
+    a.doctor = d
+    a.save()
+    return redirect('appointment_index')
+
+
