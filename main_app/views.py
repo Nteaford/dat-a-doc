@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import UpdateView, DeleteView
-from .models import Appointment, Doctor, Profile
+from .models import Appointment, Doctor
 
 
 def uniquespecialties():
@@ -97,17 +97,42 @@ def appointment_update_doctor(request, appointment_id, selected_specialty):
     uniquespecialties()
     appointment = Appointment.objects.get(id=appointment_id)
     doctors = Doctor.objects.filter(specialty = selected_specialty)
-    return render(request, "appointment/update.html", {"selected_specialty": selected_specialty, "doctors": doctors, "unique_specialties": uniquespecialties, "selected_doctor": appointment.doctor, "appointment": appointment, "appointment_id": appointment.id, "doctor_id": appointment.doctor.id})
+    # doctor_id = request['id'] 
+    return render(request, "appointment/update.html", {
+        "selected_specialty": selected_specialty,
+        "doctor_id": appointment.doctor.id,
+        "doctors": doctors, 
+        "unique_specialties": uniquespecialties, 
+        "appointment": appointment, 
+        "appointment_id": appointment.id
+        })
 
 @login_required
 def appointment_update_appointment(request, appointment_id, selected_specialty, doctor_id):
     uniquespecialties()
     appointment = Appointment.objects.get(id=appointment_id)
-    selected_specialty = Appointment.objects.get(id=appointment_id).doctor.specialty
+    print(selected_specialty)
     doctors = Doctor.objects.all().filter(specialty = selected_specialty)
-    doctor_id = Appointment.objects.get(id=appointment_id).doctor.id
+    print(doctors)
+    print(doctor_id)
+    
+    # doctor_name = Doctor.objects.get(id=doctor_id)
+    print(doctor_id)
     print(appointment)
-    return render(request, "appointment/update.html", {"selected_specialty": selected_specialty, "selected_doctor": appointment.doctor, "doctor_id": doctor_id, "doctors": doctors, "unique_specialties": uniquespecialties, "appointment": appointment, "appointment_id": appointment.id})
+    if doctor_id == 69:
+        selected_doctor=appointment.doctor
+    else:
+        selected_doctor=Doctor.objects.get(id=doctor_id)
+
+    return render(request, "appointment/update.html", {
+        "selected_specialty": selected_specialty,
+         "selected_doctor":selected_doctor, 
+         "doctor_id": doctor_id, 
+         "doctors": doctors, 
+         "unique_specialties": uniquespecialties, 
+         "appointment": appointment, 
+         "appointment_id": appointment.id
+         })
 
 @login_required
 def appointment_update_submit(request, appointment_id, selected_specialty, doctor_id):
