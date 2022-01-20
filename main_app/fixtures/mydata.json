@@ -1,0 +1,196 @@
+
+   
+   [
+       {
+           "model": "main_app.doctor",
+           "pk":1, 
+           "fields": {
+                "name":"Grand Maester Pycelle",
+                "med_school":"GOTU",
+                "specialty":"General Medicine",
+                "years_practicing":10,
+                "hospital":"The Citadel",
+                "quote":"Minds are like swords I do fear. The old ones go to rust."
+           }
+        },
+        {
+            "model": "main_app.doctor",
+            "pk":2, 
+            "fields": {
+                "name":"Madam Pomfrey",
+                "med_school":"Hogwarts",
+                "specialty":"General Medicine",
+                "years_practicing":20,
+                "hospital":"Hogwarts Infirmary",
+                "quote":"Minister! Professor! I must insist that you leave. Potter is my patient, and he should not be distressed!"
+            }
+        },
+        {
+            "model": "main_app.doctor",
+            "pk":3, 
+            "fields": {
+                "name":"Abraham Van Helsing",
+                "med_school":"Dutch University",
+                "specialty":"General Medicine",
+                "years_practicing":300,
+                "hospital":"Carfax Estate",
+                "quote":"I want you to believe... to believe in things that you cannot."
+            }
+        },
+        {
+            "model": "main_app.doctor",
+            "pk":4, 
+            "fields":{
+                "name":"Julius Hibbert",
+                "med_school":"John Hopkins",
+                "specialty":"General Medicine",
+                "years_practicing":30,
+                "hospital":"Springfield General Hospital",
+                "quote":"Well, we can't fix his heart, but we can tell you exactly how damaged it is."
+            }
+        },
+        {
+            "model": "main_app.doctor",
+            "pk":5, 
+            "fields":{
+                "name":"John Dolittle",
+                "med_school":"Fish",
+                "specialty":"Veterinary",
+                "years_practicing":5,
+                "hospital":"UCSF Medical School",
+                "quote":"Albert Einstein, he came in with that wild hair and everybody thought he was crazy. And Muhammad Ali, he came out saying what rounds he was going to beat people in, going 'I am the greatest!', everybody thought he was crazy. And Joan of Arc, she heard voices."
+            }
+        },
+        {
+            "model": "main_app.doctor",
+            "pk":6, 
+            "fields":{
+                "name":"Otto Octavius",
+                "med_school":"MIT",
+                "specialty":"Veterinary",
+                "years_practicing":17,
+                "hospital":"Arkham General Hospital",
+                "quote":"The Power Of The Sun In The Palm Of My Hand."
+            }
+        },
+        {
+            "model": "main_app.doctor",
+            "pk":7, 
+            "fields":{
+                "name":"Steven Strange",
+                "med_school":"Columbia",
+                "specialty":"Surgery",
+                "years_practicing":11,
+                "hospital":"Metro General",
+                "quote":"Forget Everything You Think You Know."
+            }
+        },
+        {
+            "model": "main_app.doctor",
+            "pk":8, 
+            "fields":{
+                "name":"Leonard McCoy",
+                "med_school":"University of Mississippi",
+                "specialty":"Surgery",
+                "years_practicing":25,
+                "hospital":"USS Enterprise",
+                "quote":"He's dead, Jim!"
+            }
+        },
+        {
+            "model": "main_app.doctor",
+            "pk":9, 
+            "fields":{
+                "name":"Hank McCoy",
+                "med_school":"Bard College",
+                "specialty":"Surgery",
+                "years_practicing":15,
+                "hospital":"Xavier Institute",
+                "quote":"Mutantkind's greatest enemy? Canada, apparently."
+            }
+        },
+        {
+            "model": "main_app.doctor",
+            "pk":10, 
+            "fields":{
+                "name":"Andre 'Dre' Young",
+                "med_school":"Compton Night School",
+                "specialty":"Ear, Nose, and Throat",
+                "years_practicing":33,
+                "hospital":"Studio 440",
+                "quote":"The only two things that scare me are God and the IRS."
+            }
+        },
+        {
+            "model": "main_app.doctor",
+            "pk":11, 
+            "fields":{
+                "name":"Doc (The Dwarf)",
+                "med_school":"Colorado School of Mines",
+                "specialty":"Ear, Nose, and Throat",
+                "years_practicing":63,
+                "hospital":"Marburg University Hospital",
+                "quote":"Who's butterin' like a spoodledug?"
+            }
+        },
+        {
+            "model": "main_app.doctor",
+            "pk":12, 
+            "fields":{
+                "name":"Jonathan Crane",
+                "med_school":"Gotham University",
+                "specialty":"Psychiatry",
+                "years_practicing":12,
+                "hospital":"Arkham Asylum",
+                "quote":"I respect the mind's power over the body. It's why I do what I do."
+            }
+        },
+        {
+            "model": "main_app.doctor",
+            "pk":13, 
+            "fields":{
+                "name":"Hannibal Lecter",
+                "med_school":"John Hopkins",
+                "specialty":"Psychiatry",
+                "years_practicing":28,
+                "hospital":"Johns Hopkins Medical Center",
+                "quote":"Whenever Feasible, One Should Always Try To Eat The Rude."
+            }
+        },
+        {
+            "model": "main_app.doctor",
+            "pk":14, 
+            "fields":{
+                "name":"Wilbur Wonka Sr.",
+                "med_school":"Munich Dental School",
+                "specialty":"Dentistry",
+                "years_practicing":35,
+                "hospital":"Dental Carre",
+                "quote":"Now lets see what the damage is this year, shall we?"
+            }
+        },
+        {
+            "model": "main_app.doctor",
+            "pk":15, 
+            "fields":{
+                "name":"John Henry Holliday",
+                "med_school":"Pennsylvania College of Dental Surgery",
+                "specialty":"Dentistry",
+                "years_practicing":7,
+                "hospital":"O.K. Corral Dentistry",
+                "quote":"Yes, but there’s just something about him. Something around the eyes, I don’t know, reminds me of, me. No. I’m sure of it, I hate him."
+            }
+        },
+        {
+            "model": "main_app.doctor",
+            "pk":16, 
+            "fields":{
+                "name":"Philip Sherman",
+                "med_school":"Sydney College of Dentistry ",
+                "specialty":"Dentistry",
+                "years_practicing":20,
+                "hospital":"42 Wallaby Way, Sydney",
+                "quote":"Beauty, isn't he? I found that guy strugglin' for life at the reef, and I saved him."
+            }
+        }
+   ] 
