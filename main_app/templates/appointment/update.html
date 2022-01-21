@@ -7,17 +7,16 @@
 
 
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom: 5px;">
         {% if selected_specialty %}
             {{ selected_specialty }} 
         {% else %}
             Select A Specialty
         {% endif %}
         </button>
-
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton " >
             {% for selected_specialty in unique_specialties %}
-                <a class="dropdown-item" href="{% url 'appointment_update_doctor' appointment_id selected_specialty %}"> {{selected_specialty}} </a>
+                <a class="dropdown-item" href="{% url 'appointment_update_doctor' appointment_id selected_specialty %}" > {{selected_specialty}} </a>
             {% endfor %}
         </div>
       </div>
@@ -25,7 +24,7 @@
 
         {% if doctors %}
         <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom: 5px;">
            {% if selected_doctor %}
                {{ selected_doctor.name }} 
            {% else %}
@@ -33,7 +32,7 @@
            {% endif %}
            </button>
 
-           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
                <a class="dropdown-item" href="{% url 'appointment_update_appointment' appointment_id selected_specialty doctor_id %}"> {{appointment.doctor.name}} </a>
                {% for doctor in doctors %}
                <a class="dropdown-item" href="{% url 'appointment_update_appointment' appointment_id selected_specialty doctor.id %}"> {{doctor.name}} </a>
@@ -44,7 +43,7 @@
         {% if selected_doctor %}
         <form id="new-appointment-form" action="{% url 'appointment_update_submit' appointment_id selected_specialty selected_doctor.id %}" method='POST'>
             {% csrf_token %}
-            <select  name = "visit_type" class="custom-select rounded" id="inputGroupSelect01" style="max-width: 300px;">
+            <select  name = "visit_type" class="custom-select rounded" id="inputGroupSelect01" style="max-width: 300px; margin-bottom: 5px;">
                 <option selected> {{appointment.visit_type}} </option>
                 <option name = "visit_type" value="General"> General Visit </option>
                 <option name = "visit_type" value="Checkup"> Routine Checkup </option>

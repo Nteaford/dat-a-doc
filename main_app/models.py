@@ -42,7 +42,7 @@ class Doctor(models.Model):
     years_practicing = models.IntegerField()
     hospital = models.CharField(max_length=100)
     quote = models.TextField()
-
+    image_url = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name
