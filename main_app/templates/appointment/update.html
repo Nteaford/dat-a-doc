@@ -2,9 +2,10 @@
 
 {% block content %}
 
-
-<h1>Reschedule Your Appointment</h1>
-
+<br>
+<h1 style="font-size: 75px;color: #fff; text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000; text-align: center;">Reschedule Your Appointment</h1>
+<hr>
+<br>
 
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom: 5px;">
@@ -52,10 +53,13 @@
                 <option name = "visit_type" value="Emergency"> Emergency Visit </option>
             </select> 
             <br>
-            <p>Your scheduled appointment time is {{appointment.date}}</p>
-            <label for="meeting-time">If necessary, choose a new time for your appointment:</label>
-
+            <br>
+            <p style="font-size:30px;color: #000; text-shadow: 1px 0 0 #fff, 0 -1px 0 #fff, 0 1px 0 #fff, -1px 0 0 #fff;">Your scheduled appointment time is {{appointment.date}}</p>
+            <br>
+            <label for="meeting-time" style="font-size:30px;color: #000; text-shadow: 1px 0 0 #fff, 0 -1px 0 #fff, 0 1px 0 #fff, -1px 0 0 #fff;">If necessary, choose a new time for your appointment:</label>
             <input name="date" type="datetime-local" min="2022-01-21T09:00" max="2022-07-20T00:00">    
+            <br>
+            <br>
             <div>  
                 <span class="input-group-text">Appointment Reason:</span>
                 <textarea name="appointment_reason" class="form-control" aria-label="With textarea">{{appointment.appointment_reason}}</textarea>
