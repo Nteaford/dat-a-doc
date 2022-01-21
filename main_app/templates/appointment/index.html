@@ -6,17 +6,16 @@
 <hr>
 <br>
 {% for appointment in appointments %} 
-<div class= "card bg-light mb-3" style="max-width: 81rem;">
+<div class= "card bg-light mb-3" style="max-width: 81rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
     <div class="card-content card-body" style="background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.2));">
         <span class="card-title"><h5>{{ appointment.date }}</h5></span>
         <hr>
-        <h6>Visit type: {{ appointment.visit_type }}</h6>
-        <h6>Appointment Reason: {{ appointment.appointment_reason }}</h6>
-        <br>
-        <h6>Doctor: {{ appointment.doctor }}</h6>
+        <h5>Doctor: {{ appointment.doctor }}</h5>
+        <h5>Visit type: {{ appointment.visit_type }}</h5>
+        <h5>Appointment Reason: {{ appointment.appointment_reason }}</h5>
         <div class="card-action text-right">
-            <a class = "btn btn-warning" href="{% url 'appointment_update_appointment' appointment.id appointment.doctor.specialty 69  %}">Update</a>
-            <a class = "btn btn-danger" href="{% url 'appointment_delete' appointment.id %}">Delete</a>
+            <a class = "btn btn-warning" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);" href="{% url 'appointment_update_appointment' appointment.id appointment.doctor.specialty 69  %}">Update</a>
+            <a class = "btn btn-danger" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);" href="{% url 'appointment_delete' appointment.id %}">Delete</a>
           </div>
     </div>
 </div>
