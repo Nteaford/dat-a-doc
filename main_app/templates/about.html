@@ -1,43 +1,30 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
+<br>
+<h1 style="font-size: 75px;color: #fff; text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000; text-align: center;">Doctor List</h1>
+<hr>
+<br>    
 
-<h1>Doctor List</h1>
-<div style="display: grid;">
-<div class="cards-2 section-gray">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card card-blog">
-                    <div class="card-image">
-                        <a href="#"> <img class="img img-raised" style="    max-height: 229px; max-width: 343px;" src="https://cdn.onebauer.media/one/empire-tmdb/films/3050/images/g97xTt18p0WWnj6wxLGC0vBKFwQ.jpg?format=jpg&quality=80&width=960&height=540&ratio=16-9&resize=aspectfill"> </a>
-                        <div class="ripple-cont"></div>
-                    </div>
-                    <div class="table">
-                      <div class="flexboxcard" style="background-color: rgb(199, 199, 199); margin: 15px 5px 5px 5px">
-                        <h5>Name: </h5>
-                        <span></span>
-                      </div>
-                      <div class="flexboxcard" style="background-color: rgb(199, 199, 199); margin: 5px">
-                        <h5>Experience: </h5>
-                        <span>15 years</span>
-                      </div>
-                      <div class="flexboxcard" style="background-color: rgb(199, 199, 199); margin: 5px">
-                        <h5>Location: </h5>
-                        <span>San Francisco, California</span>
-                      </div>
-                      <div class="flexboxcard" style="background-color: rgb(199, 199, 199); margin: 5px">
-                        <h5>Med School: </h5>
-                        <span>School of Fish</span>
-                      </div>
-                      <div class="flexboxcard" style="background-color: rgb(199, 199, 199); margin: 5px">
-                        <h5>Quote: </h5>
-                        <span>“Not only could he understand me, but it turns out he's a doctor! Look, not even a scar! And it hurt so bad. I don't know what I would have done without him.” - Owl</span>
-                      </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for doctor in doctors %}
+  <div class="col" style="border-radius: 20%;">
+    <div class="card h-100" style="border-radius: 10%; background:white">
+      <img
+        src="{{ doctor.image_url }}"
+        style="height:200px; width:200px;"
+        class="card-img-top img-thumbnail mx-auto"
+        alt="..."
+      />
+      <div class="card-body" style="border-radius: 10%;background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.7));" >
+        <h5 class="card-title">{{ doctor.name }}</h5>
+        <p class="card-text">Specialty: {{ doctor.specialty }}</p>
+        <p class="card-text">Experience: {{ doctor.years_practicing }} years</p>
+        <p class="card-text">Medical School: {{ doctor.med_school }}</p>
+        <p class="card-text">Hospital: {{ doctor.hospital }}</p>
+        <p class="card-text">Quote: "{{ doctor.quote }}"</p>
+      </div>
+      
     </div>
+  </div>
+  {% endfor %} 
 </div>
-<div>
 {% endblock %}

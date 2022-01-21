@@ -2,12 +2,13 @@
 
 {% block content %}
 
-
-<h1>Schedule a New Appointment</h1>
-
+<br>
+<h1 style="font-size: 75px;color: #fff; text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000; text-align: center;">Schedule a New Appointment</h1>
+<hr>
+<br>
 
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom: 5px;">
         {% if selected_specialty %}
             {{ selected_specialty }} 
         {% else %}
@@ -22,10 +23,9 @@
         </div>
       </div>
 
-
         {% if doctors %}
         <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-bottom: 5px;">
            {% if selected_doctor %}
                {{ selected_doctor.name }} 
            {% else %}
@@ -52,7 +52,8 @@
                 <option name = "visit_type" value="Emergency"> Emergency Visit </option>
             </select> 
             <br>
-            <label for="meeting-time">Choose a time for your appointment:</label>
+            <br>
+            <label for="meeting-time" style="font-size:30px;color: #000; text-shadow: 1px 0 0 #fff, 0 -1px 0 #fff, 0 1px 0 #fff, -1px 0 0 #fff;">Choose a time for your appointment:</label>
             <input name="date" type="datetime-local" min="2022-01-21T09:00" max="2022-07-20T00:00" required>    
             <div>  
                 <span class="input-group-text">Appointment Reason:</span>

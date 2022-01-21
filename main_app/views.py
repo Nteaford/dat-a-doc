@@ -29,7 +29,8 @@ def home(request):
     return render(request, 'home.html')
 
 def about(request):
-    return render(request, 'about.html')
+    doctors = Doctor.objects.all()
+    return render(request, 'about.html', {'doctors': doctors})
 
 def signup(request):
     error_message = ''
@@ -52,7 +53,7 @@ def signup(request):
 
 @login_required
 def appointment_index(request):
-    appointments = Appointment.objects.filter(user=request.user)
+    appointments = Appointment.objects.filter(user=request.user).order_by('date')
     return render(request, "appointment/index.html", {"appointments": appointments})
 
 @login_required

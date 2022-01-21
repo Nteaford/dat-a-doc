@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1>My Appointments</h1>
-
+<br>
+<h1 style="font-size: 75px;color: #fff; text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000; text-align: center;">My Appointments</h1>
+<hr>
+<br>
 {% for appointment in appointments %} 
 <div class= "card bg-light mb-3" style="max-width: 81rem;">
-    <div class="card-content card-body">
+    <div class="card-content card-body" style="background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.2));">
         <span class="card-title"><h5>{{ appointment.date }}</h5></span>
         <hr>
         <h6>Visit type: {{ appointment.visit_type }}</h6>
