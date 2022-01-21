@@ -8,3 +8,8 @@ footer.page-footer {
     padding-top: 0;
     text-align: right;
   }
+
+#flex-start{
+    justify-content: flex-end;
+}
+
