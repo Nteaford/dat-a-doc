@@ -5,16 +5,17 @@
 <h1>My Appointments</h1>
 
 {% for appointment in appointments %} 
-<div class="card">
-    <div class="card-content">
-        <span class="card-title">{{ appointment.date }}</span>
-        <p>Visit type: {{ appointment.visit_type }}</p>
-        <p>Appointment Reason: {{ appointment.appointment_reason }}</p>
-        <p>Doctor: {{ appointment.doctor }}</p>
-        <p>User: {{ appointment.user }}</p>
-        <div class="card-action">
-            <a href="{% url 'appointment_update_appointment' appointment.id 'taco' 69  %}">Update</a>
-            <a href="{% url 'appointment_delete' appointment.id %}">Delete</a>
+<div class= "card bg-light mb-3" style="max-width: 81rem;">
+    <div class="card-content card-body">
+        <span class="card-title"><h5>{{ appointment.date }}</h5></span>
+        <hr>
+        <h6>Visit type: {{ appointment.visit_type }}</h6>
+        <h6>Appointment Reason: {{ appointment.appointment_reason }}</h6>
+        <br>
+        <h6>Doctor: {{ appointment.doctor }}</h6>
+        <div class="card-action text-right">
+            <a class = "btn btn-warning" href="{% url 'appointment_update_appointment' appointment.id appointment.doctor.specialty 69  %}">Update</a>
+            <a class = "btn btn-danger" href="{% url 'appointment_delete' appointment.id %}">Delete</a>
           </div>
     </div>
 </div>
